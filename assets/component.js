@@ -267,6 +267,14 @@ function registerEventListeners() {
 
     if (!(target instanceof Element)) return;
 
+    // Third-party widgets (Swym wishlist) inject buttons inside elements that carry `on:` attributes,
+    // so a click on the widget would otherwise bubble to the theme handler and, on the PDP gallery,
+    // open the zoom dialog. Skip theme delegation for those subtrees. Propagation is untouched, so the
+    // widget's own listeners still run.
+    if (target.closest('[data-theme-events-ignore], .swym-atw-btn-wrapper-for-img, #swym-atw-button-container, .swym-advanced-wishlist-collections-container')) {
+      return null;
+    }
+
     if (target.hasAttribute(`on:${event.type}`)) {
       return target;
     }
