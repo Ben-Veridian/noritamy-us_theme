@@ -4634,4 +4634,25 @@ div>div.group-block-content.layout-panel-flex.layout-panel-flex--column>div:nth-
 .product-grid__item .product-badges::before {
     display: none !important ;
 }
+i.icon-swym-wishlist {
+    font-family: "swym-font";
+    font-style: normal;
+    vertical-align: middle;
+}
+i.icon-swym-wishlist + span {
+    vertical-align: middle;
+}
+i.icon-swym-wishlist:after {
+    content: "";
+    font-size: 130%;
+    line-height: 18px;
+    text-align: center;
+    display: inline;
+} /*content rendered after swym is ready to avoid showing block/invalid chars*/
 
+.swym-ready i.icon-swym-wishlist:after {
+    content: '\f004'; /* Make it'\f08a' for the heart to look empty */
+}
+.swym-advanced-header-icon, #swym-advanced-header-icon, #swym-advanced-header-icon-mobile {
+    width: 26px;
+}
