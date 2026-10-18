@@ -862,6 +862,7 @@
                       "type": "text",
                       "settings": {
                         "text": "<p>From the moment you place your order, please allow <strong>2-8 business days</strong> for our team to craft and quality-check your piece. All orders are shipped from our studio at Herzl 20, Israel. To ensure a seamless experience, we cover all related customs taxes and charges.</p><h2>Shipping Options</h2><p><strong>Economy Service (USPS in the USA):</strong> 5-14 business days once sent — Fully traceable — <strong>Free</strong></p><p><strong>DHL Express:</strong> 2-6 business days once sent — Fully traceable — <strong>$15 USD</strong></p><h2>Returns &amp; Exchanges</h2><p>Returns are accepted within 30 days of delivery, provided the item is unworn and in its original condition. For your convenience, returns are sent to our US-based address. For full details and instructions, please refer to our <a href=\"/pages/shipping-returns\">complete shipping and returns policy</a>.</p>",
+                        "text_uk": "<p>From the moment you place your order, please allow <strong>2-8 business days</strong> for our team to craft and quality-check your piece. All orders are shipped from our studio in Israel by <strong>FedEx</strong>, fully tracked.</p><h2>Delivered duty paid</h2><p>Prices include VAT. We pay all import VAT, customs duties and clearance fees, so <strong>there is nothing to pay on delivery</strong>. If a carrier ever asks you for payment, please do not pay it and contact us at <a href=\"mailto:hey@noritamy.com\">hey@noritamy.com</a>.</p><h2>Delivery options</h2><p>Standard delivery is free. Express delivery is also available. Prices and estimated delivery times are shown at checkout before you pay.</p><h2>Returns</h2><p>You can return your order within <strong>30 days of delivery</strong> for a full refund, including standard delivery. Returns are sent to our studio in Israel and you pay the return postage. See <a href=\"/pages/uk-cancellations\">Cancellations &amp; returns (UK)</a> for details.</p>",
                         "width": "100%",
                         "max_width": "normal",
                         "alignment": "left",
@@ -1664,6 +1665,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Custom made orders (such as full gold or special lengths and sizes) can not be returned</p>",
+                    "text_uk": "<p>Pieces made to your own specifications, such as engraving, a bespoke design, or a length or size outside our standard range, cannot be returned unless they are faulty. Everything else, including sale items, can be returned within 30 days of delivery.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
@@ -1787,6 +1789,7 @@
                   "name": "t:names.text",
                   "settings": {
                     "text": "<p>Economy Service (will be delivered in the US using USPS) - 5-14 business days once sent, fully traceable - free shipping <br/>DHL Express - 2-6 business days once sent, fully traceable - $15 <br/></p>",
+                    "text_uk": "<p>Standard delivery to the UK is free, and express delivery is available at checkout. All orders are sent by FedEx, fully tracked, and <strong>delivered duty paid</strong>: there is nothing to pay on delivery.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",

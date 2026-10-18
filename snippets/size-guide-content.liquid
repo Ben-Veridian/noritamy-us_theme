@@ -1,3 +1,9 @@
+{%- liquid
+  assign show_uk = false
+  if localization.country.iso_code == 'GB'
+    assign show_uk = true
+  endif
+-%}
 <div class="size-guide-container">
   <div class="size-guide-title">Ring Size Conversion Chart</div>
   <table class="size-guide-table">
@@ -6,28 +12,29 @@
         <th>Inside Diameter (mm)</th>
         <th>US Size</th>
         <th>European Size</th>
+        {%- if show_uk %}<th>UK Size</th>{% endif %}
       </tr>
     </thead>
     <tbody>
-      <tr><td>14.1</td><td>3</td><td>44</td></tr>
-      <tr><td>14.5</td><td>3.5</td><td>45</td></tr>
-      <tr><td>14.9</td><td>4</td><td>47</td></tr>
-      <tr><td>15.3</td><td>4.5</td><td>48</td></tr>
-      <tr><td>15.7</td><td>5</td><td>49</td></tr>
-      <tr><td>16.1</td><td>5.5</td><td>51</td></tr>
-      <tr><td>16.5</td><td>6</td><td>52</td></tr>
-      <tr><td>16.9</td><td>6.5</td><td>53</td></tr>
-      <tr><td>17.3</td><td>7</td><td>54</td></tr>
-      <tr><td>17.7</td><td>7.5</td><td>56</td></tr>
-      <tr><td>18.1</td><td>8</td><td>57</td></tr>
-      <tr><td>18.5</td><td>8.5</td><td>58</td></tr>
-      <tr><td>18.9</td><td>9</td><td>59</td></tr>
-      <tr><td>19.4</td><td>9.5</td><td>61</td></tr>
-      <tr><td>19.8</td><td>10</td><td>62</td></tr>
-      <tr><td>20.2</td><td>10.5</td><td>63</td></tr>
-      <tr><td>20.6</td><td>11</td><td>65</td></tr>
-      <tr><td>21.0</td><td>11.5</td><td>66</td></tr>
-      <tr><td>21.4</td><td>12</td><td>67</td></tr>
+      <tr><td>14.1</td><td>3</td><td>44</td>{%- if show_uk %}<td>F</td>{% endif %}</tr>
+      <tr><td>14.5</td><td>3.5</td><td>45</td>{%- if show_uk %}<td>G</td>{% endif %}</tr>
+      <tr><td>14.9</td><td>4</td><td>47</td>{%- if show_uk %}<td>H</td>{% endif %}</tr>
+      <tr><td>15.3</td><td>4.5</td><td>48</td>{%- if show_uk %}<td>I</td>{% endif %}</tr>
+      <tr><td>15.7</td><td>5</td><td>49</td>{%- if show_uk %}<td>J½</td>{% endif %}</tr>
+      <tr><td>16.1</td><td>5.5</td><td>51</td>{%- if show_uk %}<td>K½</td>{% endif %}</tr>
+      <tr><td>16.5</td><td>6</td><td>52</td>{%- if show_uk %}<td>L½</td>{% endif %}</tr>
+      <tr><td>16.9</td><td>6.5</td><td>53</td>{%- if show_uk %}<td>M½</td>{% endif %}</tr>
+      <tr><td>17.3</td><td>7</td><td>54</td>{%- if show_uk %}<td>N½</td>{% endif %}</tr>
+      <tr><td>17.7</td><td>7.5</td><td>56</td>{%- if show_uk %}<td>O½</td>{% endif %}</tr>
+      <tr><td>18.1</td><td>8</td><td>57</td>{%- if show_uk %}<td>P½</td>{% endif %}</tr>
+      <tr><td>18.5</td><td>8.5</td><td>58</td>{%- if show_uk %}<td>Q½</td>{% endif %}</tr>
+      <tr><td>18.9</td><td>9</td><td>59</td>{%- if show_uk %}<td>R½</td>{% endif %}</tr>
+      <tr><td>19.4</td><td>9.5</td><td>61</td>{%- if show_uk %}<td>S½</td>{% endif %}</tr>
+      <tr><td>19.8</td><td>10</td><td>62</td>{%- if show_uk %}<td>T½</td>{% endif %}</tr>
+      <tr><td>20.2</td><td>10.5</td><td>63</td>{%- if show_uk %}<td>U½</td>{% endif %}</tr>
+      <tr><td>20.6</td><td>11</td><td>65</td>{%- if show_uk %}<td>V½</td>{% endif %}</tr>
+      <tr><td>21.0</td><td>11.5</td><td>66</td>{%- if show_uk %}<td>W½</td>{% endif %}</tr>
+      <tr><td>21.4</td><td>12</td><td>67</td>{%- if show_uk %}<td>Y</td>{% endif %}</tr>
     </tbody>
   </table>
 

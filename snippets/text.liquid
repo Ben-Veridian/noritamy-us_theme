@@ -7,7 +7,12 @@
 {%- enddoc -%}
 
 {% liquid
-  assign plain_text = block.settings.text | strip_newlines | strip_html | strip
+  # UK market: blocks may carry a UK-specific version of their text (text_uk), shown only to GB visitors.
+  assign text_value = block.settings.text
+  if localization.country.iso_code == 'GB' and block.settings.text_uk != blank
+    assign text_value = block.settings.text_uk
+  endif
+  assign plain_text = text_value | strip_newlines | strip_html | strip
   assign text_width = width | default: block.settings.width
 
   if block.settings.font_size contains 'heading-lg' or block.settings.font_size contains 'heading-xl'
@@ -85,7 +90,7 @@
   </div>
 {% elsif plain_text != blank %}
   <{{ element }} {{ attributes }}>
-    {{ block.settings.text }}
+    {{ text_value }}
   </{{ element }}>
 {% endif %}
 
