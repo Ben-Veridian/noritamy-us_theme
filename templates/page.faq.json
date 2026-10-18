@@ -195,7 +195,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>Orders are processed within <strong>1\u20133 business days</strong>. Standard shipping within the US typically takes <strong>5\u20138 business days</strong> after dispatch. Expedited shipping options are available at checkout. You\u2019ll receive a confirmation email with a tracking number once your order ships.</p>",
-                    "text_uk": "<p>Each Noritamy piece is crafted by hand. Please allow <strong>4-8 business days</strong> for us to make your piece, then FedEx delivers it from Israel in <strong>2-5 business days</strong> with International Economy (free) or <strong>1-3 business days</strong> with International Priority. In total, expect your order within about 6-13 business days, or 5-11 with express. You will receive a tracking email once it ships.</p>",
+                    "text_uk": "<p>Each Noritamy piece is crafted by hand. Please allow <strong>4-8 business days</strong> for us to make your piece, then FedEx delivers it from Israel in <strong>2-6 business days</strong> with International Economy (free) or <strong>1-4 business days</strong> with International Priority. In total, expect your order within about 6-14 business days, or 5-12 with express. You will receive a tracking email once it ships.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
