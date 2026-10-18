@@ -243,6 +243,37 @@
       data-template="{{ template }}"
     >
       {% section 'breadcrumps' %}
+      {%- comment -%}
+        UK market only: tie the store-wide policies to the UK Consumer Terms, which prevail for UK consumers.
+      {%- endcomment -%}
+      {%- if request.page_type == 'policy' and localization.country.iso_code == 'GB' -%}
+        {%- liquid
+          assign uk_root = routes.root_url
+          if uk_root == '/'
+            assign uk_root = ''
+          endif
+        -%}
+        <div class="uk-policy-notice">
+          <p>
+            <strong>Customers in the United Kingdom:</strong> our
+            <a href="{{ uk_root }}/pages/uk-consumer-terms">UK Consumer Terms</a> also apply to your order and prevail
+            where they differ from this policy. See also
+            <a href="{{ uk_root }}/pages/uk-cancellations">Cancellations &amp; returns (UK)</a>.
+          </p>
+        </div>
+        <style>
+          .uk-policy-notice {
+            max-width: 46rem;
+            margin: 2rem auto 0;
+            padding: 1rem 1.25rem;
+            border: 1px solid rgb(var(--color-foreground-rgb, 0 0 0) / 0.2);
+            border-radius: 4px;
+          }
+          .uk-policy-notice a {
+            text-decoration: underline;
+          }
+        </style>
+      {%- endif -%}
       {{ content_for_layout }}
     </main>
 
