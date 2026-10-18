@@ -30,6 +30,40 @@
   >
     {% content_for 'blocks' %}
   </div>
+
+  {%- comment -%}
+    UK-only consumer information (Consumer Contracts Regulations / PECR). Rendered only for the
+    UK market, so other countries see the footer unchanged.
+  {%- endcomment -%}
+  {%- if localization.country.iso_code == 'GB' -%}
+    {%- liquid
+      assign root = routes.root_url
+      if root == '/'
+        assign root = ''
+      endif
+    -%}
+    <nav class="footer-uk-links" aria-label="Information for UK customers">
+      <a href="{{ root }}/pages/uk-consumer-terms">UK consumer terms</a>
+      <a href="{{ root }}/pages/uk-cancellations">Cancellations &amp; returns (UK)</a>
+      <a href="{{ root }}/pages/cookie-policy">Cookie policy</a>
+    </nav>
+    <style>
+      .footer-uk-links {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem 1.5rem;
+        padding: 0 1rem 1.25rem;
+        font-size: 0.8125rem;
+      }
+      .footer-uk-links a {
+        color: inherit;
+        text-decoration: underline;
+        text-underline-offset: 0.2em;
+      }
+    </style>
+  {%- endif -%}
 </div>
 
 {% schema %}

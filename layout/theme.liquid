@@ -123,20 +123,93 @@
 
     {{ content_for_header }}
 
-    <!-- Google Tag Manager -->
+    {%- comment -%}
+      Consent gating for the UK, EEA and Switzerland (PECR + UK/EU GDPR). There, GTM, Contentsquare
+      and Hotjar load only after the visitor explicitly accepts in Shopify's cookie banner.
+      Everywhere else they load as before, unless the visitor explicitly declined.
+      The country comes from Shopify's customer privacy API (IP based), falling back to the
+      market country, so this does not depend on which regions the banner is configured for.
+      Google Consent Mode v2 defaults to denied and is updated from the same signal, so Google Ads
+      tags inside GTM stay cookieless when analytics is accepted but marketing is not.
+    {%- endcomment -%}
     <script>
-      (function (w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-        var f = d.getElementsByTagName(s)[0],
-          j = d.createElement(s),
-          dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-      })(window, document, 'script', 'dataLayer', 'GTM-MDXMWV7K');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+      });
+      (function () {
+        var loaded = {};
+        function once(key, fn) {
+          if (!loaded[key]) {
+            loaded[key] = true;
+            fn();
+          }
+        }
+        function addScript(src) {
+          var el = document.createElement('script');
+          el.async = true;
+          el.src = src;
+          document.head.appendChild(el);
+        }
+        function loadGTM() {
+          dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          addScript('https://www.googletagmanager.com/gtm.js?id=GTM-MDXMWV7K');
+        }
+        function loadContentsquare() {
+          addScript('https://t.contentsquare.net/uxa/353f6805c2fd9.js');
+        }
+        function loadHotjar() {
+          window.hj =
+            window.hj ||
+            function () {
+              (window.hj.q = window.hj.q || []).push(arguments);
+            };
+          window._hjSettings = { hjid: 1049512, hjsv: 6 };
+          addScript('https://static.hotjar.com/c/hotjar-1049512.js?sv=6');
+        }
+        // Session replay stays off the critical path, as when it sat at the end of the body.
+        function afterParse(fn) {
+          if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+          else fn();
+        }
+        var STRICT = /^(GB|AT|BE|BG|HR|CY|CZ|DK|EE|FI|FR|DE|GR|HU|IE|IT|LV|LT|LU|MT|NL|PL|PT|RO|SK|SI|ES|SE|IS|LI|NO|CH)/;
+        function apply() {
+          var cp = window.Shopify && window.Shopify.customerPrivacy;
+          if (!cp) return;
+          var region = (cp.getRegion && cp.getRegion()) || {{ localization.country.iso_code | json }};
+          var strict = STRICT.test(region);
+          var choice = cp.currentVisitorConsent ? cp.currentVisitorConsent() : {};
+          var analytics = strict ? choice.analytics === 'yes' : choice.analytics !== 'no';
+          var marketing = strict ? choice.marketing === 'yes' : choice.marketing !== 'no';
+          gtag('consent', 'update', {
+            analytics_storage: analytics ? 'granted' : 'denied',
+            ad_storage: marketing ? 'granted' : 'denied',
+            ad_user_data: marketing ? 'granted' : 'denied',
+            ad_personalization: marketing ? 'granted' : 'denied',
+          });
+          if (analytics || marketing) once('gtm', loadGTM);
+          if (analytics) {
+            afterParse(function () {
+              once('contentsquare', loadContentsquare);
+              once('hotjar', loadHotjar);
+            });
+          }
+        }
+        document.addEventListener('visitorConsentCollected', apply);
+        if (window.Shopify && window.Shopify.loadFeatures) {
+          window.Shopify.loadFeatures([{ name: 'consent-tracking-api', version: '0.1' }], function (error) {
+            if (!error) apply();
+          });
+        }
+      })();
     </script>
-    <!-- End Google Tag Manager -->
 
     {%- if settings.page_transition_enabled or settings.transition_to_main_product -%}
       <script>
@@ -196,36 +269,8 @@
     {% endif %}
 
     {%- comment -%}
-      Analytics and session-replay tags load at the end of the body so they never compete with
-      the LCP resource for bandwidth or main-thread time.
+      Contentsquare, Hotjar and GTM load from the consent-gated loader in <head>. The GTM noscript
+      iframe was removed: a visitor without JavaScript cannot give consent, so nothing may fire.
     {%- endcomment -%}
-    <script src="https://t.contentsquare.net/uxa/353f6805c2fd9.js" async></script>
-    <!-- Hotjar Tracking Code for www.noritamy.com -->
-    <script>
-      (function (h, o, t, j, a, r) {
-        h.hj =
-          h.hj ||
-          function () {
-            (h.hj.q = h.hj.q || []).push(arguments);
-          };
-        h._hjSettings = { hjid: 1049512, hjsv: 6 };
-        a = o.getElementsByTagName('head')[0];
-        r = o.createElement('script');
-        r.async = 1;
-        r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
-        a.appendChild(r);
-      })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
-    </script>
-
-    <!-- Google Tag Manager (noscript) -->
-    <noscript
-      ><iframe
-        src="https://www.googletagmanager.com/ns.html?id=GTM-MDXMWV7K"
-        height="0"
-        width="0"
-        style="display:none;visibility:hidden"
-      ></iframe
-    ></noscript>
-    <!-- End Google Tag Manager (noscript) -->
   </body>
 </html>
