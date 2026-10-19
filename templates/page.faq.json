@@ -348,7 +348,7 @@
                   "type": "text",
                   "settings": {
                     "text": "<p>We use <strong>US ring sizes</strong> for our US store. If you\u2019re unsure of your size, we recommend visiting a local jeweler for a professional measurement. You can also check our <a href=\"/pages/size-guide\">Size Guide</a> page for help. If you need further assistance, contact us at <a href=\"mailto:info@noritamy.com\">info@noritamy.com</a>.</p>",
-                    "text_uk": "<p>Our rings are listed in <strong>US sizes</strong>. Our <a href=\"/pages/size-guide\">Size Guide</a> shows the matching UK letter size for each one (for example, US 6 is a UK L½). If you are unsure, a local jeweller can measure your finger, or contact us at <a href=\"mailto:hey@noritamy.com\">hey@noritamy.com</a>.</p>",
+                    "text_uk": "<p>Our rings are listed in <strong>US sizes</strong>. Our <a href=\"/pages/size-guide\">Size Guide</a> shows the matching UK letter size for each one (for example, US 6 is a UK L). If you are unsure, a local jeweller can measure your finger, or contact us at <a href=\"mailto:hey@noritamy.com\">hey@noritamy.com</a>.</p>",
                     "width": "100%",
                     "max_width": "normal",
                     "alignment": "left",
