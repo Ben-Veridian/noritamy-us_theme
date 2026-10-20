@@ -1045,6 +1045,12 @@
     background-color: rgb(var(--color-foreground) 0.03);
   }
 
+  /* The sticky announcement bar stacks above the header section, so it covered the top of the open
+     drawer (close button and country/currency). Lift the header section while the drawer is open. */
+  #header-group > .header-section:has(.menu-drawer-container[open]) {
+    z-index: calc(var(--layer-sticky) + 2);
+  }
+
   /* Mobile: country and currency sit at the top of the drawer, above the menu, so shoppers see what they pay in. */
   @media screen and (max-width: 749px) {
     .header__drawer--mobile .menu-drawer__close-button {
