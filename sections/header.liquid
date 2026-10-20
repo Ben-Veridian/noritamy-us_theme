@@ -549,8 +549,12 @@
     }
 
     @media screen and (max-width: 749px) {
-      --header-template-columns: var(--header-mobile-bookend) var(--header-mobile-bookend) 1fr
-        var(--header-mobile-bookend) var(--header-mobile-bookend);
+      /* Both sides are as wide as the right-hand actions (account, wishlist, cart), so the logo stays
+         centred and shrinks on narrow phones instead of running under the icons. */
+      --header-mobile-side: 104px;
+      --header-template-columns: var(--header-mobile-bookend)
+        minmax(0, calc(var(--header-mobile-side) - var(--header-mobile-bookend))) minmax(0, 1fr)
+        minmax(0, calc(var(--header-mobile-side) - var(--header-mobile-bookend))) var(--header-mobile-bookend);
       grid-template-areas: 'leftA leftB center rightA rightB';
       grid-column: span 3;
       column-gap: 0;
@@ -575,7 +579,9 @@
       }
 
       header-actions {
-        grid-area: rightB;
+        grid-row: 1;
+        grid-column: rightA-start / rightB-end;
+        justify-self: end;
       }
     }
   }
