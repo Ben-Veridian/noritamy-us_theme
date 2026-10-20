@@ -1045,6 +1045,20 @@
     background-color: rgb(var(--color-foreground) 0.03);
   }
 
+  /* Mobile: country and currency sit at the top of the drawer, above the menu, so shoppers see what they pay in. */
+  @media screen and (max-width: 749px) {
+    .header__drawer--mobile .menu-drawer__close-button {
+      order: -2;
+    }
+
+    .header__drawer--mobile .menu-drawer__utility-links {
+      order: -1;
+      margin-block: 0 var(--padding-sm);
+      margin-inline-end: var(--padding-xl);
+      border-bottom: 1px solid rgb(var(--color-foreground-rgb, 0 0 0) / 0.12);
+    }
+  }
+
   .menu-drawer__account {
     display: inline-flex;
     align-items: center;

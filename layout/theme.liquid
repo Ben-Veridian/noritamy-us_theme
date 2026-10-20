@@ -52,7 +52,12 @@
       );
     </script>
 
-    {%- comment -%} Locale path redirect runs before any network work so we never pay for a discarded render. {%- endcomment -%}
+    {%- comment -%}
+      Locale path redirect runs before any network work so we never pay for a discarded render.
+      It strips stray locale prefixes (e.g. /en-us/) on the root market only. Market subfolders
+      such as /en-gb are served by Shopify with their own routes.root_url and must not be stripped.
+    {%- endcomment -%}
+    {%- if routes.root_url == '/' -%}
     <script>
       (function () {
         var currentUrl = window.location.href;
@@ -74,6 +79,7 @@
         }
       })();
     </script>
+    {%- endif -%}
 
     {%- comment -%} Render-blocking CSS and fonts are requested before any third-party script. {%- endcomment -%}
     {%- render 'fonts' -%}
