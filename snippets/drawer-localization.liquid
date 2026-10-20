@@ -60,7 +60,8 @@
                 ></span>
               {%- endif -%}
               <span class="currency-code">
-                {{- localization.country.currency.iso_code -}}
+                {{- localization.country.name }} · {{ localization.country.currency.iso_code }}
+                {{ localization.country.currency.symbol -}}
               </span>
             </div>
           {%- endif -%}
