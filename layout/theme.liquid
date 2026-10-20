@@ -53,25 +53,22 @@
     </script>
 
     {%- comment -%} Locale path redirect runs before any network work so we never pay for a discarded render. {%- endcomment -%}
+    {%- comment -%}
+      Strips stray locale prefixes (e.g. old /he-il/ links) from the path. It must leave the current
+      market's own subfolder alone: the United Kingdom market lives at /en-gb, and stripping it sent
+      every UK visitor back to the US site. Only the start of the path is checked, so handles such
+      as /products/ab-cd are never touched.
+    {%- endcomment -%}
     <script>
       (function () {
-        var currentUrl = window.location.href;
+        var marketRoot = {{ routes.root_url | json }}.replace(/\/$/, '').toLowerCase();
+        var path = window.location.pathname;
+        var match = path.match(/^\/([a-z]{2}-[a-z]{2})(\/|$)/i);
+        if (!match || '/' + match[1].toLowerCase() === marketRoot) return;
 
-        var langPattern = /\/([a-z]{2}-[a-z]{2})(\/|$)/i;
-
-        if (langPattern.test(currentUrl)) {
-          var newUrl = currentUrl.replace(langPattern, '/');
-
-          newUrl = newUrl.replace(/\/+$/, '/');
-
-          if (newUrl.length > window.location.origin.length + 1) {
-            newUrl = newUrl.replace(/\/$/, '');
-          }
-
-          if (newUrl !== currentUrl) {
-            window.location.replace(newUrl);
-          }
-        }
+        var newPath = path.slice(match[1].length + 1) || '/';
+        if (newPath.length > 1) newPath = newPath.replace(/\/$/, '');
+        window.location.replace(window.location.origin + newPath + window.location.search + window.location.hash);
       })();
     </script>
 
