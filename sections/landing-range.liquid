@@ -283,7 +283,7 @@
             <details class="landing-details" data-qv-materials data-details-name="materials">
               <summary class="h6">{{ section.settings.materials_heading | escape }}</summary>
               <div class="rte">
-                {{ section.settings.materials_text }}
+                {%- if localization.country.iso_code == 'GB' and section.settings.materials_text_uk != blank -%}{{ section.settings.materials_text_uk }}{%- else -%}{{ section.settings.materials_text }}{%- endif -%}
                 <div data-qv-materials-product></div>
               </div>
             </details>
@@ -480,6 +480,12 @@
       "id": "materials_text",
       "label": "First details text",
       "info": "The product's own materials field is added under this text."
+    },
+    {
+      "type": "richtext",
+      "id": "materials_text_uk",
+      "label": "First details text, UK version (UK visitors only)",
+      "info": "Optional. When filled in, visitors in the United Kingdom market see this instead of the text above."
     },
     {
       "type": "text",
