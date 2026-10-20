@@ -17,6 +17,7 @@
           "disabled": true,
           "settings": {
             "text": "<p>Designed With Intention<br/>Worn With Attitude</p>",
+            "text_uk": "",
             "width": "100%",
             "max_width": "normal",
             "alignment": "center",
@@ -43,6 +44,7 @@
           "name": "t:names.text",
           "settings": {
             "text": "",
+            "text_uk": "",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -241,6 +243,7 @@
               "name": "t:names.text",
               "settings": {
                 "text": "<p>SHOP BY</p>",
+                "text_uk": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -267,6 +270,7 @@
               "name": "t:names.text",
               "settings": {
                 "text": "<h3><em>Collection</em></h3>",
+                "text_uk": "",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -427,6 +431,7 @@
               "name": "t:names.heading",
               "settings": {
                 "text": "<h3><strong>New In</strong></h3>",
+                "text_uk": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -661,7 +666,7 @@
       "custom_css": [],
       "name": "t:names.products_carousel",
       "settings": {
-        "collection": "new-1",
+        "collection": "new-homepage",
         "layout_type": "carousel",
         "carousel_on_mobile": false,
         "max_products": 4,
@@ -809,6 +814,7 @@
               "name": "t:names.text",
               "settings": {
                 "text": "<p>COMPLETE YOUR HOME WITH</p>",
+                "text_uk": "",
                 "width": "fit-content",
                 "max_width": "normal",
                 "alignment": "left",
@@ -835,6 +841,7 @@
               "name": "t:names.text",
               "settings": {
                 "text": "<h3><em>Accessories</em></h3>",
+                "text_uk": "",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
